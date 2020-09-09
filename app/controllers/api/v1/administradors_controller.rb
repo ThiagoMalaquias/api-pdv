@@ -26,10 +26,10 @@ module Api
         end
       end
 
-      def destory 
+      def destroy 
         administrador = Administrador.find(params[:id])
 
-        if administrador.destory #caso de tudo certo
+        if administrador.destroy #caso de tudo certo
           render json: administrador, status: 202
         else #caso aconteça algum erro
           render json: { errors: administrador.errors.full_messages }, status: 400
