@@ -38,7 +38,7 @@ module Api
       private
 
       def Fornecedor_params
-        params.require(:fornecedor).permit(:nome, :email, :telefone, :cpf, :endereco, :turno, :data_contratacao, :sexo)
+        params.require(:fornecedor).permit(:nome, :email, :telefone, :cpf, :endereco, :sexo)
       end
       
     end
