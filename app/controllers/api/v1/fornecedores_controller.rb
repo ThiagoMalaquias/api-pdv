@@ -6,7 +6,7 @@ module Api
       end
 
       def create
-        fornecedor = Fornecedor.new(Fornecedor_params)
+        fornecedor = Fornecedor.new(fornecedor_params)
 
         if fornecedor.save()
           render json: fornecedor, status: 200
@@ -18,7 +18,7 @@ module Api
       def update
         fornecedor = Fornecedor.find(params[:id])
 
-        if fornecedor.update(Fornecedor_params)
+        if fornecedor.update(fornecedor_params)
           render json: fornecedor, status: 200
         else
           render json: { errors: fornecedor.errors.full_messages}, status: 400
@@ -37,7 +37,7 @@ module Api
 
       private
 
-      def Fornecedor_params
+      def fornecedor_params
         params.require(:fornecedor).permit(:nome, :email, :telefone, :cpf, :endereco, :sexo)
       end
       
