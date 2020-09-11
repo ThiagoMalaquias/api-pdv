@@ -2,13 +2,9 @@ class ApplicationController < ActionController::API
   before_action :valida_token_api
 
   def valida_token_api
-    tokenValido = "7c76a78f-7123-40b1-84fd-2be5cea4131d"
-    tokenBase64 = "N2M3NmE3OGYtNzEyMy00MGIxLTg0ZmQtMmJlNWNlYTQxMzFk"
-
     token = request.headers["Authentic-Token"]
-    token = Base64.decode64(token) if token.present? 
 
-    if token != tokenValido
+    if Administrador.where(token: "9d973ec6-4831-4893-bce8-bb1478dd6cfc").count == 0
       render json: {message: 'Token invalido ou vazio'}, status: 401
     end
   end

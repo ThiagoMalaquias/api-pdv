@@ -2,10 +2,12 @@ module Api
   module V1
     class FornecedoresController < ApplicationController
       def index
+        cros_headers
         render json: Fornecedor.all
       end
 
       def create
+        cros_headers
         fornecedor = Fornecedor.new(fornecedor_params)
 
         if fornecedor.save()
@@ -16,6 +18,7 @@ module Api
       end
 
       def update
+        cros_headers
         fornecedor = Fornecedor.find(params[:id])
 
         if fornecedor.update(fornecedor_params)
@@ -26,6 +29,7 @@ module Api
       end
 
       def destroy
+        cros_headers
         fornecedor = Fornecedor.find(params[:id])
 
         if fornecedor.destroy
@@ -36,6 +40,13 @@ module Api
       end
 
       private
+
+      def cros_headers
+        headers['Access-Control-Allow-Origin'] = '*'
+        headers['Access-Control-Allow-Methods'] = 'POST, GET, OPTIONS, HEAD, DELETE'
+        headers['Access-Control-Request-Method'] = '*'
+        headers['Access-Control-Allow-Headers'] = 'Origin, X-Requested-With, Content-Type, Accept'
+      end
 
       def fornecedor_params
         params.require(:fornecedor).permit(:nome, :email, :telefone, :cpf, :endereco, :sexo)
