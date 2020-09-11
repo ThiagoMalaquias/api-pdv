@@ -6,10 +6,7 @@ class ApplicationController < ActionController::API
     tokenBase64 = "N2M3NmE3OGYtNzEyMy00MGIxLTg0ZmQtMmJlNWNlYTQxMzFk"
 
     token = request.headers["Authentic-Token"]
-
-    if token.present?
-      token = Base64.decode64(token)    
-    end
+    token = Base64.decode64(token) if token.present? 
 
     if token != tokenValido
       render json: {message: 'Token invalido ou vazio'}, status: 401
