@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::API
-  before_action :valida_token_api, :cross_domain
+  before_action :valida_token_api, :cross_domain, :except => [:options]
 
   def valida_token_api
     token = request.headers["Authentic-Token"]

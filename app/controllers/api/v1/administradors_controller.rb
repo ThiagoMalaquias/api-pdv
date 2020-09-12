@@ -5,7 +5,10 @@ module Api::V1
       administrador = Administrador.where(email: params[:email], senha: params[:senha]).first
       
       if administrador.present?
-        render json: administrador.to_json(:only => [ :id, :nome, :email, :token]), status: 200
+        token = Base64.encode64(administrador[:token])
+        administrador[:token] = token
+        administradorMap = administrador.to_json(:only => [ :id, :nome, :email, :token])
+        render json:  administradorMap, status: 200
       else
         render json: {error: "Usuário ou senha inválidos"}, status: 401
       end
