@@ -7,7 +7,11 @@ Rails.application.routes.draw do
       resources :administradors
       resources :funcionarios
       resources :fornecedores
+
+      post '/administrador/logar', to: 'administradors#login'
+      
     end
   end
 
+  match '/api/v1/administrador/logar', to: 'application#options', via: :options
 end

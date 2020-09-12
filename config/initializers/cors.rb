@@ -14,3 +14,5 @@
 #       methods: [:get, :post, :put, :patch, :delete, :options, :head]
 #   end
 # end
+
+Rails.application.config.hosts << "http://localhost:4200/"
