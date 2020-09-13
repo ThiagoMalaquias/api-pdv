@@ -4,7 +4,7 @@ class ApplicationController < ActionController::API
   def valida_token_api
     token = request.headers["Authentic-Token"]
     
-    if Administrador.where(token: token).count == 0
+    if Token.where(nome: token).count == 0
       render json: {message: 'Token invalido ou vazio'}, status: 401
     end
   end

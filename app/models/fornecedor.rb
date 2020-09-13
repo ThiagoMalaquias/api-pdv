@@ -1,3 +1,3 @@
 class Fornecedor < ApplicationRecord
-  validates :nome, :email, :telefone, :cpf, :endereco, :sexo, presence: true
+  validates :cnpj, :nome, :telefone, :cpf, :empresa_id, presence: true
 end

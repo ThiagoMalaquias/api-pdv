@@ -5,3 +5,5 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+Token.create(nome: "9d973ec6-4831-4893-bce8-bb1478dd6cfc")
+Administrador.create(nome: "adminthiago", email: "adminthiago@pdvonline.com.br", senha: "123456")

@@ -1,46 +1,43 @@
-module Api
-  module V1
-    class FornecedoresController < ApplicationController
-      def index
-        render json: Fornecedor.all
+module Api::V1
+  class FornecedoresController < ApplicationController
+    def index
+      render json: Fornecedor.all
+    end
+
+    def create
+      fornecedor = Fornecedor.new(fornecedor_params)
+
+      if fornecedor.save()
+        render json: fornecedor, status: 200
+      else
+        render json: { errors: fornecedor.errors.full_messages}, status: 400
       end
+    end
 
-      def create
-        fornecedor = Fornecedor.new(fornecedor_params)
+    def update
+      fornecedor = Fornecedor.find(params[:id])
 
-        if fornecedor.save()
-          render json: fornecedor, status: 200
-        else
-          render json: { errors: fornecedor.errors.full_messages}, status: 400
-        end
+      if fornecedor.update(fornecedor_params)
+        render json: fornecedor, status: 200
+      else
+        render json: { errors: fornecedor.errors.full_messages}, status: 400
       end
+    end
 
-      def update
-        fornecedor = Fornecedor.find(params[:id])
+    def destroy
+      fornecedor = Fornecedor.find(params[:id])
 
-        if fornecedor.update(fornecedor_params)
-          render json: fornecedor, status: 200
-        else
-          render json: { errors: fornecedor.errors.full_messages}, status: 400
-        end
+      if fornecedor.destroy
+        render json: fornecedor, status: 200
+      else
+        render json: { errors: fornecedor.errors.full_messages}, status: 400
       end
+    end
 
-      def destroy
-        fornecedor = Fornecedor.find(params[:id])
+    private
 
-        if fornecedor.destroy
-          render json: fornecedor, status: 200
-        else
-          render json: { errors: fornecedor.errors.full_messages}, status: 400
-        end
-      end
-
-      private
-
-      def fornecedor_params
-        params.require(:fornecedor).permit(:nome, :email, :telefone, :cpf, :endereco, :sexo)
-      end
-      
+    def fornecedor_params
+      params.require(:fornecedor).permit(:cnpj, :nome, :telefone, :cpf, :empresa_id)
     end
   end
 end

@@ -3,7 +3,6 @@ class CreateAdministradors < ActiveRecord::Migration[6.0]
     create_table :administradors do |t|
       t.string :nome
       t.string :email
-      t.string :telefone
       t.string :senha
 
       t.timestamps
