@@ -8,11 +8,22 @@ Rails.application.routes.draw do
       resources :tokens
       resources :funcionarios
       resources :fornecedores
+      resources :produtos
+      resources :empresas
+      resources :clientes
+      resources :pagamentos
+      resources :vendas
+
+      post '/funcionario/logar', to: 'funcionarios#login'
 
       post '/administrador/logar', to: 'administradors#login'
       
     end
   end
 
+  match '/api/v1/funcionario/logar', to: 'application#options', via: :options
+  
   match '/api/v1/administrador/logar', to: 'application#options', via: :options
+  
+  match '/api/v1/empresas/', to: 'application#options', via: :options
 end

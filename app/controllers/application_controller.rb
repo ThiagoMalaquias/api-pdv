@@ -2,10 +2,19 @@ class ApplicationController < ActionController::API
   before_action :valida_token_api, :cross_domain, :except => [:options]
 
   def valida_token_api
-    token = request.headers["Authentic-Token"]
-    
-    if Token.where(nome: token).count == 0
-      render json: {message: 'Token invalido ou vazio'}, status: 401
+    if params[:controler] == "/api/v1/funcionario/logar" && params[:action] == "login" 
+      token = request.headers["Authentic-Token"]
+      
+      if Token.where(nome: token).count == 0
+        render json: {message: 'Token invalido ou vazio'}, status: 401
+      end
+    else
+      token = request.headers["Authentic-Token"]
+      tokenUser = Base64.decode64(request.headers["Token-User"])
+      
+      if Token.where(nome: token).count == 0 && Funcionario.where(token: tokenUser).count == 0
+        render json: {message: 'Token invalido ou vazio'}, status: 401
+      end
     end
   end
 
@@ -20,7 +29,7 @@ class ApplicationController < ActionController::API
     headers['Access-Control-Allow-Origin'] = '*'
     headers['Access-Control-Allow-Methods'] = 'POST, GET, OPTIONS, HEAD, DELETE'
     headers['Access-Control-Request-Method'] = '*'
-    headers['Access-Control-Allow-Headers'] = 'Origin, X-Requested-With, Content-Type, Accept, Authentic-Token'
+    headers['Access-Control-Allow-Headers'] = 'Origin, X-Requested-With, Content-Type, Accept, Authentic-Token, Token-User'
   end
 
 end
