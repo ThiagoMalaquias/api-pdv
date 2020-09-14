@@ -1,18 +1,24 @@
 module Api::V1
   class FuncionariosController < ApplicationController
     def index
-      render json: Funcionario.all
+      if params[:empresa_id].present?
+        funcionarios = Funcionario.where(empresa_id: params[:empresa_id])
+        funcionarios = funcionarios.to_json(:only => [ :id, :nome, :email, :cpf, :admin]) 
+        render json: funcionarios, status: 200
+      else
+        render json: Funcionario.all
+      end
     end
 
     def login
-      funcionario = Funcionario.where(email: params[:email], cpf: params[:cpf]).first
+      funcionario = Funcionario.where(email: params[:email], senha: params[:senha]).first
 
       if funcionario.present?
         token = Base64.encode64(funcionario[:token])
         funcionario[:token] = token
-        funcionario = funcionario.to_json(:only => [ :id, :nome, :email, :cpf, :token, :empresa_id])
-        
-        render json:  funcionario, status: 200
+        funcionarioMap = funcionario.to_json(:only => [ :id, :nome, :admin, :token, :empresa_id])
+
+        render json:  funcionarioMap, status: 200
       else
         render json: {error: "Usuário ou senha inválidos"}, status: 401
       end
@@ -51,7 +57,7 @@ module Api::V1
     private
 
     def funcionario_params
-      params.require(:funcionario).permit(:nome, :email, :cpf, :admin, :token, :empresa_id)
+      params.require(:funcionario).permit(:nome, :email, :senha, :cpf, :admin, :token, :empresa_id)
     end
   end
 end

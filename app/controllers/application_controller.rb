@@ -2,7 +2,7 @@ class ApplicationController < ActionController::API
   before_action :valida_token_api, :cross_domain, :except => [:options]
 
   def valida_token_api
-    if params[:controler] == "/api/v1/funcionario/logar" && params[:action] == "login" 
+    if params[:controller] == "api/v1/funcionarios"
       token = request.headers["Authentic-Token"]
       
       if Token.where(nome: token).count == 0

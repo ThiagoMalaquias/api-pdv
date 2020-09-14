@@ -22,8 +22,10 @@ Rails.application.routes.draw do
   end
 
   match '/api/v1/funcionario/logar', to: 'application#options', via: :options
-  
+  match '/api/v1/funcionarios/', to: 'application#options', via: :options
+
   match '/api/v1/administrador/logar', to: 'application#options', via: :options
   
   match '/api/v1/empresas/', to: 'application#options', via: :options
+
 end

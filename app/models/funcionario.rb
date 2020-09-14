@@ -1,5 +1,5 @@
 class Funcionario < ApplicationRecord
-  validates :nome, :email, :cpf, :admin, :empresa_id, presence: true
+  validates :nome, :email, :senha, :cpf, :admin, :empresa_id, presence: true
   before_validation :set_token
 
   def set_token
