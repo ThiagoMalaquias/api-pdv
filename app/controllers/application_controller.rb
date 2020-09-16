@@ -4,7 +4,7 @@ class ApplicationController < ActionController::API
   def valida_token_api
     if params[:controller] == "api/v1/funcionarios"
       token = request.headers["Authentic-Token"]
-      
+
       if Token.where(nome: token).count == 0
         render json: {message: 'Token invalido ou vazio'}, status: 401
       end
@@ -27,7 +27,7 @@ class ApplicationController < ActionController::API
 
   def cross_domain
     headers['Access-Control-Allow-Origin'] = '*'
-    headers['Access-Control-Allow-Methods'] = 'POST, GET, OPTIONS, HEAD, DELETE'
+    headers['Access-Control-Allow-Methods'] = 'POST, GET, OPTIONS, HEAD, DELETE, PUT'
     headers['Access-Control-Request-Method'] = '*'
     headers['Access-Control-Allow-Headers'] = 'Origin, X-Requested-With, Content-Type, Accept, Authentic-Token, Token-User'
   end
