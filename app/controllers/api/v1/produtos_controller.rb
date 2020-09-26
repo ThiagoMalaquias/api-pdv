@@ -47,7 +47,7 @@ module Api::V1
     private
 
     def produto_params
-      params.require(:produto).permit(:nome, :preco,:qtd_estoque,:fornecedores_id, :categorias_id, :empresa_id)
+      params.require(:produto).permit(:nome, :preco,:qtd_estoque,:imagem, :fornecedores_id, :categorias_id, :empresa_id)
     end
 
 
