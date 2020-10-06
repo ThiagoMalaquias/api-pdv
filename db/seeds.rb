@@ -11,4 +11,4 @@ Administrador.create(nome: "adminthiago", email: "adminthiago@pdvonline.com.br",
 
 #Empresa.create(nome: "Compre Bem", cnpj_cpf: "29.334.654/0001-33", endereco: "Rua Quatro", bairro: " Jardim Itaguaçu I", cep: "54515-54", estado: "SP", telefone: "(11)95865-5862")
 
-#Funcionario.all
+Funcionario.create(nome:"Rosangela", email:"ro@teste.com.br", cpf:"999.999.999.99",admin:"S",token:"fa1aab6a-0a8f-4cd6-9a17-d9cff8ed6e99", empresa_id:1,senha:"123456")

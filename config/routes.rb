@@ -32,5 +32,11 @@ Rails.application.routes.draw do
   match '/api/v1/clientes/', to: 'application#options', via: :options
   match '/api/v1/clientes/:id', to: 'application#options', via: :options
 
+  match '/api/v1/categorias',to: 'aplication#options',via: :options
+  match '/api/v1/categorias/:id',to: 'application#options', via: :options
+  match '/api/v1/produtos/', to: 'application#options', via: :options
+  match '/api/v1/produtos/:id', to: 'application#options', via: :options
+  
+
 
 end
