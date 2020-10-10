@@ -9,6 +9,10 @@ module Api::V1
         produto = Produto.where(id: params[:id]).first
         produto = produto.to_json
         render json: produto, status: 200
+      elsif params[:codigo_produto].present?
+        produto = Produto.where(codigo_produto: params[:codigo_produto]).first
+        produto = produto.to_json
+        render json: produto, status: 200        
       else
         render json: Produto.all
       end
@@ -47,7 +51,7 @@ module Api::V1
     private
 
     def produto_params
-      params.require(:produto).permit(:nome, :preco,:qtd_estoque,:imagem, :fornecedores_id, :categorias_id, :empresa_id)
+      params.require(:produto).permit(:nome,:codigo_produto :preco,:qtd_estoque,:imagem, :fornecedores_id, :categorias_id, :empresa_id)
     end
 
 
