@@ -38,7 +38,7 @@ Rails.application.routes.draw do
   match '/api/v1/produtos/', to: 'application#options', via: :options
   match '/api/v1/produtos/:id', to: 'application#options', via: :options
   match '/api/v1/produtos/:codigo_produto', to: 'application#options', via: :options
+  match '/api/v1/produtos/:nome', to: 'application#options', via: :options
   
-
 
 end

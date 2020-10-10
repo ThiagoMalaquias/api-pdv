@@ -12,7 +12,11 @@ module Api::V1
       elsif params[:codigo_produto].present?
         produto = Produto.where(codigo_produto: params[:codigo_produto]).first
         produto = produto.to_json
-        render json: produto, status: 200        
+        render json: produto, status: 200      
+      elsif params[:nome].present?
+        produto = Produto.where(nome: params[:nome]).first
+        produto = produto.to_json
+        render json: produto, status: 200           
       else
         render json: Produto.all
       end
